@@ -11,20 +11,25 @@ Iran's drone attack on a US radar in Bahrain, Nvidia's bumper results, a
 third day of falling markets, Canada–China trade deals, and Cyclone Akvan
 bearing down on the Bay of Bengal.
 
-![The world in one image, 18 November 2026](front-page.png)
+![The world in one image, 18 November 2026](entry.png)
 
-`main.py` renders the captioned front page (the collage above plus the real
-headline behind every panel) as a deterministic SVG. The headlines and the
-outlets that reported them are also in `news.json`.
+`entry.png` is the entry image: 1024x1024, under 1 MiB, with the date in
+the masthead and a short headline caption for each of the day's seven
+stories. It is built from the seven-panel collage in `front-page.png` by
+`build_image.py` (a build-time tool that uses Pillow). The headlines and
+the outlets that reported them are also in `news.json`.
 
 ## Run it
 
 ```sh
-python3 main.py
+MAKEFUN_OUTPUT_DIR=out python3 main.py
 ```
 
-Writes `output/front-page.svg`. Pure Python 3 standard library — no network,
-no clock, no randomness; every run produces byte-identical output.
+`main.py` copies `entry.png` to `out/entry.png` (with no
+`MAKEFUN_OUTPUT_DIR` set it writes to `/output/entry.png`, the grader's
+location). Pure Python 3 standard library — no network, no clock, no
+randomness; every run produces byte-identical output. To rebuild the
+image itself: `python3 build_image.py`.
 
 ---
 
